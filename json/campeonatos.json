@@ -1,0 +1,14 @@
+[
+  {
+    "nomeCampeonato": "Torneio Interclubes 2025",
+    "local": "São Paulo - Estádio Municipal",
+    "dataHora": "2025-11-15 10:00",
+    "requisitos": "Times com 15 jogadoras, mínimo de 20 anos",
+    "regras": "https://site.com/regras_interclubes.pdf",
+    "numTimes": 16,
+    "numJogadorasPorTime": 15,
+    "dataLimiteInscricao": "2025-11-01",
+    "timesInscritos": ["Guardiãs do Gol"],
+    "timesAprovados": []
+  }
+]
