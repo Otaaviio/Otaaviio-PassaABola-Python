@@ -137,7 +137,7 @@ def realizarAvaliacao(olheiro, jogadora):
     jogadora["avaliacoes"].append(avaliacao)
     salvarAlteracoes()
 
-    app.adicionarEvento(jogadora.get("email",""), f"⭐ Avaliação recebida do Olheiro {olheiro.get('nome')} - Nota {nota}")
+    paginaJogadora.adicionarEvento(jogadora.get("email",""), f"⭐ Avaliação recebida do Olheiro {olheiro.get('nome')} - Nota {nota}")
 
     input("\nAvaliação registrada com sucesso! Pressione Enter para voltar ao perfil.")
     mostrarPerfilParaOlheiro(olheiro, jogadora)
