@@ -1,0 +1,67 @@
+[
+  {
+    "nome": "Amanda Costa",
+    "email": "amanda.c@email.com",
+    "senha": "senha123",
+    "cpf": "11122233344",
+    "tipoDeUsuario": 1,
+    "idade": 23,
+    "posicao": "Atacante",
+    "sub": "Ponta Esquerda",
+    "highlights": "https://youtube.com/amanda_gols",
+    "redeSocial": "@amanda_costa",
+    "biografia": "Jogadora rápida com grande capacidade de finalização.",
+    "pontos": 85,
+    "avaliacoes": [
+      {
+        "olheiro": "Fernando Silva",
+        "nota": 5,
+        "comentario": "Excelente visão de jogo e finalização precisa.",
+        "data": "2025-05-10"
+      }
+    ]
+  },
+  {
+    "nome": "Beatriz Ramos",
+    "email": "bia.r@email.com",
+    "senha": "senha456",
+    "cpf": "55566677788",
+    "tipoDeUsuario": 1,
+    "idade": 19,
+    "posicao": "Meio-Campo",
+    "sub": "Meia Armadora",
+    "highlights": "https://youtube.com/bia_assistencias",
+    "redeSocial": "@bia_ramos_fut",
+    "biografia": "Controle de bola e passes precisos são meu forte.",
+    "pontos": 72,
+    "avaliacoes": [
+      {
+        "olheiro": "Maria Oliveira",
+        "nota": 4,
+        "comentario": "Promissora, com bom controle de bola.",
+        "data": "2025-06-20"
+      }
+    ]
+  },
+  {
+    "nome": "João Olheiro",
+    "email": "joao.o@email.com",
+    "senha": "senha789",
+    "cpf": "99988877766",
+    "tipoDeUsuario": 2
+  },
+  {
+    "nome": "maluf",
+    "email": "maluf@email.com",
+    "senha": "maluf098",
+    "cpf": "00011122233",
+    "tipoDeUsuario": 3
+  },
+  {
+    "nome": "Ale Xavier",
+    "email": "xavier@email.com",
+    "senha": "xavier098",
+    "cpf": "00011122233",
+    "tipoDeUsuario": 3
+  }
+]
