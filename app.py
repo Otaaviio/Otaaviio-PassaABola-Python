@@ -7,7 +7,7 @@ import pages.paginaOlheiro as paginaOlheiro
 # ----------------------------
 # Configurações de persistência
 # ----------------------------
-ARQUIVO_JOGADORAS = "arquivosJson/jogadoras.json"
+ARQUIVO_JOGADORAS = "Json/jogadoras.json"
 
 def carregar_jogadoras():
     if not os.path.exists(ARQUIVO_JOGADORAS):
