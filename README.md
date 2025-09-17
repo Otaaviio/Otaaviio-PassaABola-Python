@@ -112,11 +112,11 @@ o **desenvolvimento profissional** das atletas, oferecendo
 
 ## 👥 Equipe Goal Breakers
 
--   **Laura Tigre**\
--   **Áurea Sardinha**\
--   **Eduardo Ulisses**\
--   **Henrique Guedes**\
--   **Otávio Inaba**
+-   **Áurea Sardinha - 563837**
+-   **Eduardo Ulisses - 566339**
+-   **Henrique Guedes - 562474**
+-   **Laura Tigre - 565281**
+-   **Otávio Inaba - 565003**
 
 ------------------------------------------------------------------------
 
