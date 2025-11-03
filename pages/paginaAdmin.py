@@ -43,18 +43,20 @@ def menuAdmin(admin):
 5 - Sair\n''')
 
     opcao = int(input("Escolha uma opção: "))
-    if opcao == 1:
-        listarJogadoras(admin)
-    elif opcao == 2:
-        enviarNotificacaoGlobal(admin)
-    elif opcao == 3:
-        criaCampeonato(admin)
-    elif opcao == 4:
-        gerenciarCampeonatos(admin)
-    elif opcao == 5:
-        app.main()
-    else:
-        opcaoInvalida(admin)
+    
+    match opcao:
+        case 1:
+            listarJogadoras(admin)
+        case 2:
+            enviarNotificacaoGlobal(admin)
+        case 3:
+            criaCampeonato(admin)
+        case 4:
+            gerenciarCampeonatos(admin)
+        case 5:
+            app.main()
+        case _:
+            opcaoInvalida(admin)
 
 # ----------------------------
 # Listagem de jogadoras
