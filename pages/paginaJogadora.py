@@ -18,7 +18,6 @@ def salvarAlteracoes(jogadoras):
         json.dump(jogadoras, f, indent=4, ensure_ascii=False)
 
 def carregarNotificacoes():
-    # Adicionando verificação para o caso do arquivo não existir
     if not os.path.exists(ARQUIVO_NOTIFICACOES):
         with open(ARQUIVO_NOTIFICACOES, "w", encoding="utf-8") as f:
             json.dump({}, f)
@@ -30,7 +29,6 @@ def salvarNotificacoes(notificacoes):
         json.dump(notificacoes, f, indent=4, ensure_ascii=False)
         
 def carregarTimeline():
-    # Adicionando verificação para o caso do arquivo não existir
     if not os.path.exists(ARQUIVO_TIMELINE):
         with open(ARQUIVO_TIMELINE, "w", encoding="utf-8") as f:
             json.dump({}, f)
@@ -42,7 +40,6 @@ def salvarTimeline(timeline):
         json.dump(timeline, f, indent=4, ensure_ascii=False)
 
 def carregarTimes():
-    # Adicionando verificação para o caso do arquivo não existir
     if not os.path.exists(ARQUIVO_TIMES):
         with open(ARQUIVO_TIMES, "w", encoding="utf-8") as f:
             json.dump([], f)
@@ -54,7 +51,6 @@ def salvarTimes(times):
         json.dump(times, f, indent=4, ensure_ascii=False)
 
 def carregarCampeonatos():
-    # Adicionando verificação para o caso do arquivo não existir
     if not os.path.exists(ARQUIVO_CAMPEONATOS):
         with open(ARQUIVO_CAMPEONATOS, "w", encoding="utf-8") as f:
             json.dump([], f)
@@ -105,26 +101,34 @@ def menuJogadora():
     return input("Escolha uma opção: \n")
 
 def escolhaMenuJogadora(jogadora):
-    opcao = menuJogadora()
-    if opcao == "1":
-        verPerfil(jogadora)
-    elif opcao == "2":
-        notificacoes(jogadora)
-    elif opcao == "3":
-        verTimeline(jogadora)
-    elif opcao == "4":
-        gerenciarTime(jogadora)
-    elif opcao == "5":
-        app.main()
-    else:
-        opcaoInvalida(jogadora)
+
+    try:
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            verPerfil(jogadora)
+        elif opcao == "2":
+            notificacoes(jogadora)
+        elif opcao == "3":
+            verTimeline(jogadora)
+        elif opcao == "4":
+            gerenciarTime(jogadora)
+        elif opcao == "5":
+            app.main()
+        else:
+            print(" Opção inválida!")
+            input("Pressione Enter para voltar...")
+            mainJogadora(jogadora)
+    except Exception as e:
+        print(f" Erro: {e}")
+        input("Pressione Enter para voltar...")
+        mainJogadora(jogadora)
 
 
 def verPerfil(jogadora):
     os.system("cls")
-
-    print("Seu Perfil")
-    print(f"\nNome: {jogadora.get('nome','')}")
+    print("=== SEU PERFIL ===\n")
+    print(f"Nome: {jogadora.get('nome','')}")
     print(f"E-mail: {jogadora.get('email','')}")
     print(f"Idade: {jogadora.get('idade',0)}")
     print(f"Posição: {jogadora.get('posicao','')}")
@@ -132,31 +136,76 @@ def verPerfil(jogadora):
     print(f"Highlights: {jogadora.get('highlights','')}")
     print(f"Rede social: {jogadora.get('redeSocial','')}")
     print(f"Biografia: {jogadora.get('biografia','')}")
+    print(f"Pontos: {jogadora.get('pontos', 0)}")
 
-    opcao = int(input('\nDigite:\n 1 - Editar Perfil\n 2 - Voltar\n '))
-
-    if opcao == 1:
-        editaJogadora(jogadora)
-    elif opcao == 2:
-        mainJogadora(jogadora)
+    try:
+        opcao = int(input('\nDigite:\n 1 - Editar Perfil\n 2 - Voltar\n\nEscolha: '))
+        
+        if opcao == 1:
+            editaJogadora(jogadora)
+        elif opcao == 2:
+            mainJogadora(jogadora)
+        else:
+            print(" Opção inválida!")
+            input("Pressione Enter...")
+            verPerfil(jogadora)
+    except ValueError:
+        print(" Digite um número válido!")
+        input("Pressione Enter...")
+        verPerfil(jogadora)
     
 def editaJogadora(jogadora):
     os.system("cls")
-    print("\n--- Editando Perfil ---")
-    jogadora["nome"] = input("\nNome completo: ")
-    jogadora["email"] = input("E-mail: ")
-    jogadora["senha"] = input("Senha: ")
-    jogadora["idade"] = int(input("Idade (apenas números): "))
-    jogadora["posicao"] = input("Posição que joga: ")
-    jogadora["sub"] = int(input("Sub que joga: "))
-    jogadora["highlights"] = input("Highlights (link do vídeo no YouTube): ")
-    jogadora["redeSocial"] = input("Rede social (link): ")
-    jogadora["biografia"] = input("Sobre (Conte-nos quem você é): ")
+    print("\n=== EDITANDO PERFIL ===\n")
+    
+    try:
+        jogadora["nome"] = input("Nome completo: ")
+        
+        email = None
+        while email is None:
+            email_input = input("E-mail: ")
+            email = app.valida_email(email_input)
+            if email is None:
+                print("Tente novamente.\n")
+        jogadora["email"] = email
+        
+        jogadora["senha"] = input("Senha: ")
+        
+        while True:
+            try:
+                idade = int(input("Idade (apenas números): "))
+                if idade < 0 or idade > 120:
+                    print(" Idade inválida! Digite um valor entre 0 e 120.")
+                    continue
+                jogadora["idade"] = idade
+                break
+            except ValueError:
+                print(" Digite um número válido!")
+        
+        jogadora["posicao"] = input("Posição que joga: ")
+        
+        while True:
+            try:
+                sub = int(input("Sub que joga (exemplo: 17, 20): "))
+                jogadora["sub"] = sub
+                break
+            except ValueError:
+                print(" Digite um número válido!")
+        
+        jogadora["highlights"] = input("Highlights (link do vídeo no YouTube): ")
+        jogadora["redeSocial"] = input("Rede social (link): ")
+        jogadora["biografia"] = input("Sobre você (conte-nos quem você é): ")
 
-    salvarAlteracoes(app.jogadoras)
+        salvarAlteracoes(app.jogadoras)
 
-    input("\nPerfil atualizado com sucesso!\nPressione 'Enter' para voltar\n")
-    mainJogadora(jogadora)
+        print("\n Perfil atualizado com sucesso!")
+        input("Pressione Enter para voltar...")
+        mainJogadora(jogadora)
+        
+    except Exception as e:
+        print(f" Erro ao atualizar perfil: {e}")
+        input("Pressione Enter para tentar novamente...")
+        editaJogadora(jogadora)
 
 def verTimeline(jogadora):
     os.system("cls")
@@ -208,49 +257,87 @@ def gerenciarTime(jogadora):
     meu_time = next((t for t in times if email in t.get("jogadoras", [])), None)
 
     if meu_time:
-        print(f"\n--- Meu Time: {meu_time['nome']} ---")
-        print("Integrantes:")
+        print(f"\n=== MEU TIME: {meu_time['nome']} ===")
+        print("\nIntegrantes:")
         for j in meu_time.get("jogadoras"):
-            print(f"- {j}")
+            print(f"  • {j}")
         
         convites = meu_time.get("convites")
         if convites:
             print("\nConvites pendentes:")
             for c in convites:
-                print(f"- {c}")
+                print(f"  • {c}")
         else:
-            print("\nNenhum convite pendente.")
+            print("\n✓ Nenhum convite pendente.")
 
         if jogadora["email"] == meu_time.get("criadora"):
-            print("\n--- Você é o(a) Capitão(ã) deste time ---")
-            print("Opções:\n1 - Convidar jogadora\n2 - Sair do time\n3 - Inscrever em campeonato\n4 - Voltar")
-            opcao = app.validaEntrada("Escolha: ", int, [1,2,3,4])
-            if opcao == 1:
-                convidarJogadora(jogadora, meu_time)
-            elif opcao == 2:
-                sairDoTime(jogadora, meu_time)
-            elif opcao == 3:
-                inscreverEmCampeonato(jogadora, meu_time)
-            elif opcao == 4:
-                mainJogadora(jogadora)
+            print("\nVOCÊ É O(A) CAPITÃO(Ã) DESTE TIME")
+            print("\nOpções:")
+            print("1 - Convidar jogadora")
+            print("2 - Sair do time")
+            print("3 - Inscrever em campeonato")
+            print("4 - Voltar")
+            
+            try:
+                opcao = int(input("\nEscolha: "))
+                if opcao == 1:
+                    convidarJogadora(jogadora, meu_time)
+                elif opcao == 2:
+                    sairDoTime(jogadora, meu_time)
+                elif opcao == 3:
+                    inscreverEmCampeonato(jogadora, meu_time)
+                elif opcao == 4:
+                    mainJogadora(jogadora)
+                else:
+                    print(" Opção inválida!")
+                    input("Pressione Enter...")
+                    gerenciarTime(jogadora)
+            except ValueError:
+                print(" Digite um número válido!")
+                input("Pressione Enter...")
+                gerenciarTime(jogadora)
         else:
-            print("\nOpções:\n1 - Sair do time\n2 - Voltar")
-            opcao = app.validaEntrada("Escolha: ", int, [1,2])
-            if opcao == 1:
-                sairDoTime(jogadora, meu_time)
-            elif opcao == 2:
-                mainJogadora(jogadora)
+            print("\nOpções:")
+            print("1 - Sair do time")
+            print("2 - Voltar")
+            
+            try:
+                opcao = int(input("\nEscolha: "))
+                if opcao == 1:
+                    sairDoTime(jogadora, meu_time)
+                elif opcao == 2:
+                    mainJogadora(jogadora)
+                else:
+                    print(" Opção inválida!")
+                    input("Pressione Enter...")
+                    gerenciarTime(jogadora)
+            except ValueError:
+                print(" Digite um número válido!")
+                input("Pressione Enter...")
+                gerenciarTime(jogadora)
     else:
-        print("\nVocê não participa de nenhum time.")
-        print("1 - Criar time\n2 - Ver convites recebidos\n3 - Voltar")
+        print("\n Você não participa de nenhum time.")
+        print("\nOpções:")
+        print("1 - Criar time")
+        print("2 - Ver convites recebidos")
+        print("3 - Voltar")
         
-        opcao = int(input("Escolha: "))
-        if opcao == 1:
-            criarTime(jogadora)
-        elif opcao == 2:
-            verConvites(jogadora)
-        elif opcao == 3:
-            mainJogadora(jogadora)
+        try:
+            opcao = int(input("\nEscolha: "))
+            if opcao == 1:
+                criarTime(jogadora)
+            elif opcao == 2:
+                verConvites(jogadora)
+            elif opcao == 3:
+                mainJogadora(jogadora)
+            else:
+                print(" Opção inválida!")
+                input("Pressione Enter...")
+                gerenciarTime(jogadora)
+        except ValueError:
+            print(" Digite um número válido!")
+            input("Pressione Enter...")
+            gerenciarTime(jogadora)
 
 def criarTime(jogadora):
     os.system("cls")
@@ -351,7 +438,7 @@ def sairDoTime(jogadora, time):
                     adicionarNotificacao(nova_criadora, 
                         f"Você agora é o(a) capitão(ã) do time '{t['nome']}'")
                     print(f"Liderança transferida para: {nova_criadora}")
-                    adicionarEvento(jogadora["email"], f"⚽ Transferiu a liderança do time {time['nome']}")
+                    adicionarEvento(jogadora["email"], f"Transferiu a liderança do time {time['nome']}")
                 
                 elif not t["jogadoras"]:
                     times.pop(i)
@@ -360,7 +447,7 @@ def sairDoTime(jogadora, time):
                 break
         
         salvarTimes(times)
-        adicionarEvento(jogadora["email"], f"⚽ Saiu do time {time['nome']}")
+        adicionarEvento(jogadora["email"], f"Saiu do time {time['nome']}")
         input("Você saiu do time. Pressione Enter.")
     else:
         input("Operação cancelada. Pressione Enter.")
@@ -440,72 +527,90 @@ def inscreverEmCampeonato(jogadora, time):
     os.system("cls")
     app.mostraLetreiro()
     
-    campeonatos = carregarCampeonatos()
-    
-    time_ja_inscrito = [
-        c["nomeCampeonato"] 
-        for c in campeonatos 
-        if time["nome"] in c.get("timesInscritos", []) or time["nome"] in c.get("timesAprovados", [])
-    ]
-    if time_ja_inscrito:
-        print(f"\nSeu time '{time['nome']}' já está inscrito no campeonato: {time_ja_inscrito[0]}.")
-        input("Pressione Enter para voltar ao menu.")
-        return gerenciarTime(jogadora)
+    try:
+        campeonatos = carregarCampeonatos()
         
-    campeonatos_disponiveis = [
-        camp for camp in campeonatos 
-        if (
-            len(camp.get("timesInscritos", [])) < camp.get("numTimes", 0) and
-            time["nome"] not in camp.get("timesInscritos", []) and
-            time["nome"] not in camp.get("timesAprovados", [])
-        )
-    ]
-    
-    if not campeonatos_disponiveis:
-        print("\nNão há campeonatos disponíveis para inscrição no momento.")
-        input("Pressione Enter para voltar.")
-        return gerenciarTime(jogadora)
-
-    print("🏆 --- Campeonatos Disponíveis ---\n")
-    for i, camp in enumerate(campeonatos_disponiveis, start=1):
-        vagas_restantes = camp.get("numTimes", 0) - len(camp.get("timesInscritos", []))
-        print(f"{i}. {camp['nomeCampeonato']}")
-        print(f" 📍 Local: {camp['local']}")
-        print(f" 📅 Data: {camp['dataHora']}")
-        print(f" 👥 Vagas restantes: {vagas_restantes}/{camp.get('numTimes',0)}")
-        print(f" 👥 Jogadoras por time: {camp.get('numJogadorasPorTime',0)}")
-        print(f" 📋 Requisitos: {camp['requisitos']}")
-        print("-" * 50)
-    
-    escolha = int(input("\nEscolha um campeonato para se inscrever (0 para voltar): "))
-    
-    if escolha == 0:
-        return gerenciarTime(jogadora)
-    
-    campeonato_escolhido = campeonatos_disponiveis[escolha-1]
-    
-    if len(time.get("jogadoras", [])) < campeonato_escolhido.get("numJogadorasPorTime", 0):
-        print(f"\nSeu time precisa de no mínimo {campeonato_escolhido['numJogadorasPorTime']} jogadoras para se inscrever.")
-        input("Pressione Enter para voltar.")
-        return gerenciarTime(jogadora)
-
-    for camp in campeonatos:
-        if camp["nomeCampeonato"] == campeonato_escolhido["nomeCampeonato"]:
-            camp["timesInscritos"].append(time["nome"])
-            salvarCampeonatos(campeonatos)
+        time_ja_inscrito = [
+            c["nomeCampeonato"] 
+            for c in campeonatos 
+            if time["nome"] in c.get("timesInscritos", []) or time["nome"] in c.get("timesAprovados", [])
+        ]
+        if time_ja_inscrito:
+            print(f"\nSeu time '{time['nome']}' já está inscrito no campeonato: {time_ja_inscrito[0]}.")
+            input("Pressione Enter para voltar...")
+            return gerenciarTime(jogadora)
             
-            adicionarEvento(
-                jogadora["email"], 
-                f"Time '{time['nome']}' se inscreveu no campeonato '{camp['nomeCampeonato']}'."
+        campeonatos_disponiveis = [
+            camp for camp in campeonatos 
+            if (
+                len(camp.get("timesInscritos", [])) < camp.get("numTimes", 0) and
+                time["nome"] not in camp.get("timesInscritos", []) and
+                time["nome"] not in camp.get("timesAprovados", [])
             )
-            
-            jogadora["pontos"] = jogadora.get("pontos", 0) + 10
-            salvarAlteracoes(app.jogadoras)
-            
-            print(f"\nTime '{time['nome']}' inscrito com sucesso no campeonato '{campeonato_escolhido['nomeCampeonato']}'! (+10 pontos)")
-            input("Aguarde a aprovação do time pelo admin.\nPressione Enter para voltar.")
+        ]
+        
+        if not campeonatos_disponiveis:
+            print("\n Não há campeonatos disponíveis para inscrição no momento.")
+            input("Pressione Enter para voltar...")
             return gerenciarTime(jogadora)
 
+        print(" === CAMPEONATOS DISPONÍVEIS ===\n")
+        for i, camp in enumerate(campeonatos_disponiveis, start=1):
+            vagas_restantes = camp.get("numTimes", 0) - len(camp.get("timesInscritos", []))
+            print(f"{i}. {camp['nomeCampeonato']}")
+            print(f"   📍 Local: {camp['local']}")
+            print(f"   📅 Data: {camp['dataHora']}")
+            print(f"   👥 Vagas: {vagas_restantes}/{camp.get('numTimes',0)}")
+            print(f"   ⚽ Jogadoras por time: {camp.get('numJogadorasPorTime',0)}")
+            print(f"   📋 Requisitos: {camp['requisitos']}")
+            print("-" * 60)
+        
+        while True:
+            try:
+                escolha = int(input("\nEscolha um campeonato (0 para voltar): "))
+                
+                if escolha == 0:
+                    return gerenciarTime(jogadora)
+                
+                if escolha < 1 or escolha > len(campeonatos_disponiveis):
+                    print(f" Escolha um número entre 1 e {len(campeonatos_disponiveis)}!")
+                    continue
+                
+                break
+            except ValueError:
+                print(" Digite um número válido!")
+        
+        campeonato_escolhido = campeonatos_disponiveis[escolha-1]
+        
+        if len(time.get("jogadoras", [])) < campeonato_escolhido.get("numJogadorasPorTime", 0):
+            print(f"\n Seu time precisa de no mínimo {campeonato_escolhido['numJogadorasPorTime']} jogadoras!")
+            print(f"   Você tem apenas {len(time.get('jogadoras', []))} jogadora(s).")
+            input("Pressione Enter para voltar...")
+            return gerenciarTime(jogadora)
+
+        for camp in campeonatos:
+            if camp["nomeCampeonato"] == campeonato_escolhido["nomeCampeonato"]:
+                camp["timesInscritos"].append(time["nome"])
+                salvarCampeonatos(campeonatos)
+                
+                adicionarEvento(
+                    jogadora["email"], 
+                    f"Time '{time['nome']}' inscrito no '{camp['nomeCampeonato']}'"
+                )
+                
+                jogadora["pontos"] = jogadora.get("pontos", 0) + 10
+                salvarAlteracoes(app.jogadoras)
+                
+                print(f"\ Time '{time['nome']}' inscrito com sucesso!")
+                print(f"   Campeonato: {campeonato_escolhido['nomeCampeonato']}")
+                print(f"   +10 pontos para você!")
+                input("\nAguarde a aprovação pelo admin.\nPressione Enter...")
+                return gerenciarTime(jogadora)
+                
+    except Exception as e:
+        print(f" Erro ao inscrever time: {e}")
+        input("Pressione Enter para voltar...")
+        gerenciarTime(jogadora)
 # ----------------------------
 # Fluxo do menu
 # ----------------------------

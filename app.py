@@ -48,6 +48,72 @@ def finalizaPrograma():
     print('''\n
 █▀█ █▀█ █▀█ █▀▀ █▀█ ▄▀█ █▀▄▀█ ▄▀█   █▀▀ █ █▄░█ ▄▀█ █░░ █ ▀█ ▄▀█ █▀▄ █▀█ ░   █▀█ █▄▄ █▀█ █ █▀▀ ▄▀█ █▀▄ █▀█ █
 █▀▀ █▀▄ █▄█ █▄█ █▀▄ █▀█ █░▀░█ █▀█   █▀░ █ █░▀█ █▀█ █▄▄ █ █▄ █▀█ █▄▀ █▄█ ▄   █▄█ █▄█ █▀▄ █ █▄█ █▀█ █▄▀ █▄█ ▄''')
+    
+# ----------------------------
+# Funções de validação
+# ----------------------------
+
+def validaEntrada(mensagem, tipo=str, opcoes_validas=None, permite_vazio=False):
+    while True:
+        try:
+            entrada = input(mensagem)
+            
+            if permite_vazio and entrada == "":
+                return entrada
+            
+            if tipo == int:
+                valor = int(entrada)
+            elif tipo == float:
+                valor = float(entrada)
+            else:
+                valor = entrada
+            
+            if opcoes_validas is not None and valor not in opcoes_validas:
+                print(f"Opção inválida! Escolha entre: {opcoes_validas}")
+                continue
+            
+            return valor
+            
+        except ValueError:
+            if tipo == int:
+                print("Erro: Digite um número inteiro válido!")
+            elif tipo == float:
+                print("Erro: Digite um número decimal válido!")
+            else:
+                print("Entrada inválida!")
+
+def valida_cpf(cpf):
+    try:
+        cpf = cpf.strip()
+        
+        if not cpf.isdigit():
+            raise ValueError("CPF deve conter apenas números")
+        
+        if len(cpf) != 11:
+            raise ValueError("CPF deve ter exatamente 11 dígitos")
+        
+        return cpf
+        
+    except ValueError as e:
+        print(f" Erro: {e}")
+        return None
+
+
+def valida_email(email):
+    try:
+        email = email.strip()
+        
+        if "@" not in email and "." not in email:
+            raise ValueError("Formatação de Email inválida")
+        
+        if email.count("@") != 1:
+            raise ValueError("Email deve conter apenas um '@'")
+        
+        return email
+        
+    except ValueError as e:
+        print(f" Erro: {e}")
+        return None
 
 # ----------------------------
 # Funções menu
@@ -59,18 +125,14 @@ def menuDeOpcoes():
     print("   3 - Finalizar programa\n")
 
 def escolheOpcaoDeMenu():
-    try:
-        opcao = int(input('Escolha uma opção: '))
-        if opcao == 1:
-            loginUsuario()
-        elif opcao == 2:
-            criaUsuario()
-        elif opcao == 3:
-            finalizaPrograma()
-        else:
-            opcaoInvalida()
-    except:
-        opcaoInvalida()
+    opcao = validaEntrada('Escolha uma opção: ', int, [1, 2, 3])
+    
+    if opcao == 1:
+        loginUsuario()
+    elif opcao == 2:
+        criaUsuario()
+    elif opcao == 3:
+        finalizaPrograma()
 
 # ----------------------------
 # Login e autenticação
@@ -104,16 +166,35 @@ def tipoDeUsuario(usuario):
         loginUsuario()
 
 # ----------------------------
-# Cadastro (BÁSICO)
+# Cadastro
 # ----------------------------
 def perguntasParaCadastro():
-    nomeCompleto = input("Nome completo: ")
-    email = input("E-mail: ")
-    senha = input("Senha: ")
-    cpf = input("CPF (apenas números): ")
-    tipoDeUsuario = int(input("Você é:\n  1 - Jogadora\n  2 - Olheiro(a)\n"))
+    print("=== CADASTRO DE NOVO USUÁRIO ===\n")
+    
+    nomeCompleto = validaEntrada("Nome completo: ", str)
+
+    email = None
+    while email is None:
+        email_input = input("E-mail: ")
+        email = valida_email(email_input)
+        if email is None:
+            print("Tente novamente.\n")
+
+    senha = validaEntrada("Senha: ", str)
+
+    cpf = None
+    while cpf is None:
+        cpf_input = input("CPF (apenas números, 11 dígitos): ")
+        cpf = valida_cpf(cpf_input)
+        if cpf is None:
+            print("Tente novamente.\n")
 
     verificaSeJaExiste(cpf)
+
+    print("\nVocê é:")
+    print("  1 - Jogadora")
+    print("  2 - Olheiro(a)")
+    tipoDeUsuario = validaEntrada("Escolha: ", int, [1, 2])
 
     if tipoDeUsuario == 1:
         return {
