@@ -101,13 +101,19 @@ def valida_cpf(cpf):
 
 def valida_email(email):
     try:
-        email = email.strip()
+        email = email.strip() 
+        menssagemErro = "Email inválido"
+
+        if " " in email or email.count("@") != 1:
+            raise ValueError(menssagemErro)
+            
+        usuario, dominio = email.split("@")
         
-        if "@" not in email and "." not in email:
-            raise ValueError("Formatação de Email inválida")
-        
-        if email.count("@") != 1:
-            raise ValueError("Email deve conter '@'")
+        if not usuario or not dominio:
+             raise ValueError(menssagemErro)
+            
+        if "." not in dominio or dominio.startswith(".") or dominio.endswith("."):
+            raise ValueError(menssagemErro)
         
         return email
         
