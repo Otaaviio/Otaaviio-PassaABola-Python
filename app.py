@@ -107,7 +107,7 @@ def valida_email(email):
             raise ValueError("Formatação de Email inválida")
         
         if email.count("@") != 1:
-            raise ValueError("Email deve conter apenas um '@'")
+            raise ValueError("Email deve conter '@'")
         
         return email
         
@@ -151,8 +151,9 @@ def loginUsuario():
             tipoDeUsuario(usuario)
             return
 
-    input("\nE-mail ou senha incorretos.\nTecle 'Enter' para tentar novamente")
-    loginUsuario()
+    print('\nE-mail ou senha incorretos\n1 - Tentar novamente\n2 - Voltar')
+    opcao = validaEntrada("Digite: ", int, [1, 2])
+    loginUsuario() if opcao == 1 else main()
 
 def tipoDeUsuario(usuario):
     if usuario.get("tipoDeUsuario") == 1:

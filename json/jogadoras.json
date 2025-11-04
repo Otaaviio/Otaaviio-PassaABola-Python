@@ -1,67 +1,274 @@
 [
   {
-    "nome": "Amanda Costa",
-    "email": "amanda.c@email.com",
-    "senha": "senha123",
-    "cpf": "11122233344",
+    "nome": "Marta Silva",
+    "email": "marta.silva@email.com",
+    "senha": "marta123",
+    "cpf": "12345678901",
     "tipoDeUsuario": 1,
-    "idade": 23,
+    "idade": 24,
     "posicao": "Atacante",
-    "sub": "Ponta Esquerda",
-    "highlights": "https://youtube.com/amanda_gols",
-    "redeSocial": "@amanda_costa",
-    "biografia": "Jogadora rápida com grande capacidade de finalização.",
-    "pontos": 85,
+    "sub": 20,
+    "highlights": "https://youtube.com/marta_gols_2024",
+    "redeSocial": "@marta_silva_fut",
+    "biografia": "Atacante veloz com excelente finalização. Sonho em jogar profissionalmente.",
+    "pontos": 125,
     "avaliacoes": [
       {
-        "olheiro": "Fernando Silva",
+        "olheiro": "Carolina Mendes",
         "nota": 5,
-        "comentario": "Excelente visão de jogo e finalização precisa.",
-        "data": "2025-05-10"
+        "comentario": "Jogadora excepcional! Ótima visão de jogo e finalizações precisas.",
+        "data": "2024-10-15"
+      },
+      {
+        "olheiro": "Roberto Santos",
+        "nota": 4,
+        "comentario": "Muito talentosa, precisa melhorar o passe longo.",
+        "data": "2024-11-01"
+      },
+      {
+        "olheiro": "o",
+        "nota": 5,
+        "comentario": "lenda",
+        "data": ""
       }
     ]
   },
   {
-    "nome": "Beatriz Ramos",
-    "email": "bia.r@email.com",
-    "senha": "senha456",
-    "cpf": "55566677788",
+    "nome": "Juliana Costa",
+    "email": "ju.costa@email.com",
+    "senha": "julia456",
+    "cpf": "23456789012",
+    "tipoDeUsuario": 1,
+    "idade": 22,
+    "posicao": "Meio-Campo",
+    "sub": 20,
+    "highlights": "https://youtube.com/juliana_passes",
+    "redeSocial": "@ju_costa10",
+    "biografia": "Meio-campista criativa, adoro fazer assistências e controlar o jogo.",
+    "pontos": 98,
+    "avaliacoes": [
+      {
+        "olheiro": "Carolina Mendes",
+        "nota": 5,
+        "comentario": "Controle de bola impressionante e visão tática excelente.",
+        "data": "2024-10-20"
+      }
+    ]
+  },
+  {
+    "nome": "Fernanda Oliveira",
+    "email": "fe.oliveira@email.com",
+    "senha": "fefe789",
+    "cpf": "34567890123",
     "tipoDeUsuario": 1,
     "idade": 19,
-    "posicao": "Meio-Campo",
-    "sub": "Meia Armadora",
-    "highlights": "https://youtube.com/bia_assistencias",
-    "redeSocial": "@bia_ramos_fut",
-    "biografia": "Controle de bola e passes precisos são meu forte.",
-    "pontos": 72,
+    "posicao": "Zagueira",
+    "sub": 20,
+    "highlights": "https://youtube.com/fernanda_defesa",
+    "redeSocial": "@fe_oliveira_def",
+    "biografia": "Zagueira forte e inteligente. Especialista em bola aérea.",
+    "pontos": 87,
     "avaliacoes": [
       {
-        "olheiro": "Maria Oliveira",
+        "olheiro": "Roberto Santos",
         "nota": 4,
-        "comentario": "Promissora, com bom controle de bola.",
-        "data": "2025-06-20"
+        "comentario": "Boa posição defensiva, pode melhorar saída de bola.",
+        "data": "2024-10-25"
+      },
+      {
+        "olheiro": "Patricia Lima",
+        "nota": 5,
+        "comentario": "Defesa sólida e líder nata em campo.",
+        "data": "2024-11-02"
       }
     ]
   },
   {
-    "nome": "João Olheiro",
-    "email": "joao.o@email.com",
-    "senha": "senha789",
-    "cpf": "99988877766",
+    "nome": "Camila Rodrigues",
+    "email": "camila.r@email.com",
+    "senha": "cami321",
+    "cpf": "45678901234",
+    "tipoDeUsuario": 1,
+    "idade": 21,
+    "posicao": "Goleira",
+    "sub": 20,
+    "highlights": "https://youtube.com/camila_defesas",
+    "redeSocial": "@camilagk1",
+    "biografia": "Goleira ágil com bons reflexos. Treino todos os dias para melhorar.",
+    "pontos": 110,
+    "avaliacoes": [
+      {
+        "olheiro": "Roberto Santos",
+        "nota": 5,
+        "comentario": "Reflexos rápidos e boa comunicação com a defesa.",
+        "data": "2024-10-18"
+      }
+    ]
+  },
+  {
+    "nome": "Beatriz Santos",
+    "email": "bia.santos@email.com",
+    "senha": "bia2024",
+    "cpf": "56789012345",
+    "tipoDeUsuario": 1,
+    "idade": 23,
+    "posicao": "Lateral",
+    "sub": 20,
+    "highlights": "https://youtube.com/bia_corridas",
+    "redeSocial": "@bia_lateral",
+    "biografia": "Lateral direita rápida, gosto de apoiar o ataque.",
+    "pontos": 92,
+    "avaliacoes": [
+      {
+        "olheiro": "Carolina Mendes",
+        "nota": 4,
+        "comentario": "Boa velocidade e cruzamentos precisos.",
+        "data": "2024-10-30"
+      }
+    ]
+  },
+  {
+    "nome": "Amanda Ferreira",
+    "email": "amanda.f@email.com",
+    "senha": "amanda99",
+    "cpf": "67890123456",
+    "tipoDeUsuario": 1,
+    "idade": 20,
+    "posicao": "Atacante",
+    "sub": 20,
+    "highlights": "https://youtube.com/amanda_dribles",
+    "redeSocial": "@amanda_fut10",
+    "biografia": "Ponta esquerda habilidosa, especialista em dribles e velocidade.",
+    "pontos": 105,
+    "avaliacoes": [
+      {
+        "olheiro": "Patricia Lima",
+        "nota": 5,
+        "comentario": "Dribla muito bem e tem ótima velocidade.",
+        "data": "2024-11-03"
+      }
+    ]
+  },
+  {
+    "nome": "Larissa Alves",
+    "email": "lari.alves@email.com",
+    "senha": "lari555",
+    "cpf": "78901234567",
+    "tipoDeUsuario": 1,
+    "idade": 18,
+    "posicao": "Meio-Campo",
+    "sub": 17,
+    "highlights": "https://youtube.com/larissa_jogadas",
+    "redeSocial": "@lari_alves8",
+    "biografia": "Jovem promessa do meio-campo, técnica e visão de jogo.",
+    "pontos": 75,
+    "avaliacoes": [
+      {
+        "olheiro": "Roberto Santos",
+        "nota": 4,
+        "comentario": "Muito jovem mas já mostra grande potencial.",
+        "data": "2024-10-28"
+      }
+    ]
+  },
+  {
+    "nome": "Gabriela Lima",
+    "email": "gabi.lima@email.com",
+    "senha": "gabi2024",
+    "cpf": "89012345678",
+    "tipoDeUsuario": 1,
+    "idade": 25,
+    "posicao": "Zagueira",
+    "sub": 20,
+    "highlights": "https://youtube.com/gabi_zaga",
+    "redeSocial": "@gabi_lima_def",
+    "biografia": "Zagueira experiente, capitã do meu time anterior.",
+    "pontos": 130,
+    "avaliacoes": [
+      {
+        "olheiro": "Carolina Mendes",
+        "nota": 5,
+        "comentario": "Liderança em campo e excelente marcação.",
+        "data": "2024-10-22"
+      },
+      {
+        "olheiro": "Patricia Lima",
+        "nota": 5,
+        "comentario": "Jogadora completa, pronta para o profissional.",
+        "data": "2024-10-29"
+      }
+    ]
+  },
+  {
+    "nome": "Rafaela Souza",
+    "email": "rafa.souza@email.com",
+    "senha": "rafa777",
+    "cpf": "90123456789",
+    "tipoDeUsuario": 1,
+    "idade": 22,
+    "posicao": "Volante",
+    "sub": 20,
+    "highlights": "https://youtube.com/rafa_marcacao",
+    "redeSocial": "@rafa_volante5",
+    "biografia": "Volante de marcação, forte fisicamente e com boa distribuição.",
+    "pontos": 88,
+    "avaliacoes": [
+      {
+        "olheiro": "Roberto Santos",
+        "nota": 4,
+        "comentario": "Marcação forte e boa recuperação de bola.",
+        "data": "2024-11-04"
+      }
+    ]
+  },
+  {
+    "nome": "Tatiana Martins",
+    "email": "tati.martins@email.com",
+    "senha": "tati2024",
+    "cpf": "01234567890",
+    "tipoDeUsuario": 1,
+    "idade": 21,
+    "posicao": "Lateral",
+    "sub": 20,
+    "highlights": "https://youtube.com/tati_apoio",
+    "redeSocial": "@tati_lateral2",
+    "biografia": "Lateral esquerda ofensiva, gosto de participar das jogadas de ataque.",
+    "pontos": 95,
+    "avaliacoes": []
+  },
+  {
+    "nome": "Carolina Mendes",
+    "email": "carolina.mendes@olheiro.com",
+    "senha": "carol123",
+    "cpf": "11111111111",
     "tipoDeUsuario": 2
   },
   {
-    "nome": "maluf",
-    "email": "maluf@email.com",
-    "senha": "maluf098",
-    "cpf": "00011122233",
+    "nome": "Roberto Santos",
+    "email": "roberto.santos@olheiro.com",
+    "senha": "roberto456",
+    "cpf": "22222222222",
+    "tipoDeUsuario": 2
+  },
+  {
+    "nome": "Patricia Lima",
+    "email": "patricia.lima@olheiro.com",
+    "senha": "patricia789",
+    "cpf": "33333333333",
+    "tipoDeUsuario": 2
+  },
+  {
+    "nome": "Ana Paula Admin",
+    "email": "ana.admin@passaabola.com",
+    "senha": "admin2024",
+    "cpf": "99999999999",
     "tipoDeUsuario": 3
   },
   {
-    "nome": "Ale Xavier",
-    "email": "xavier@email.com",
-    "senha": "xavier098",
-    "cpf": "00011122233",
+    "nome": "Marcos Silva Admin",
+    "email": "marcos.admin@passaabola.com",
+    "senha": "admin123",
+    "cpf": "88888888888",
     "tipoDeUsuario": 3
   }
 ]

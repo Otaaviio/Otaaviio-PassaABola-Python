@@ -97,12 +97,12 @@ def menuJogadora():
 3 - Ver Timeline
 4 - Gerenciar Time
 5 - Sair\n''')
-    
-    return input("Escolha uma opção: \n")
 
 def escolhaMenuJogadora(jogadora):
 
     try:
+        menuJogadora()
+
         opcao = input("Escolha uma opção: ")
         
         if opcao == "1":
@@ -372,8 +372,9 @@ def convidarJogadora(jogadora, time):
     email = input("Digite o email da jogadora a convidar: ")
     
     if not email:
-        input("Email não pode estar vazio! Pressione Enter.")
-        return convidarJogadora(jogadora, time)
+        print('Aperte\n1 - Tentar novamente\n2 - Voltar ao menu\n')
+        opcao = app.validaEntrada("Opção: ", int, [1,2])
+        return convidarJogadora(jogadora, time) if opcao == 1 else gerenciarTime(jogadora)
     
     jogadora_existe = any(j.get("email") == email and j.get("tipoDeUsuario") == 1 
                          for j in app.jogadoras)

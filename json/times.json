@@ -1,14 +1,20 @@
 [
-  {
-    "nome": "Guardiãs do Gol",
-    "criadora": "amanda.c@email.com",
-    "jogadoras": ["amanda.c@email.com"],
-    "convites": []
-  },
-  {
-    "nome": "As Furiosas",
-    "criadora": "bia.r@email.com",
-    "jogadoras": ["bia.r@email.com"],
-    "convites": ["joana.santos@email.com"]
-  }
+    {
+        "nome": "Guardiãs do Gol",
+        "criadora": "amanda.c@email.com",
+        "jogadoras": [
+            "amanda.c@email.com"
+        ],
+        "convites": []
+    },
+    {
+        "nome": "As Furiosas",
+        "criadora": "bia.r@email.com",
+        "jogadoras": [
+            "bia.r@email.com"
+        ],
+        "convites": [
+            "joana.santos@email.com"
+        ]
+    }
 ]
